@@ -1,0 +1,13 @@
+# specific files to be ignored while uploading this project
+
+.git
+.env
+.coverage
+docs/
+libraries/
+__pycache__/
+data/
+
+*.py[cod]
+*$py.class
+.DS_Store
