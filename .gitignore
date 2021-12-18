@@ -3,6 +3,7 @@
 .git
 .env
 .coverage
+*.db
 docs/
 libraries/
 __pycache__/
