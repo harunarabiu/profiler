@@ -14,7 +14,7 @@ def documentation():
 
 # noinspection PyUnresolvedReferences
 class HouseKeeping(object):
-    
+
     def save(self, commit=True):
         if commit:
             instance = self
@@ -46,8 +46,7 @@ class Base(db.Model, HouseKeeping):  # type: ignore
 
     __abstract__ = True
 
-    # BigInteger range: -9223372036854775808 to 9223372036854775807
-    id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)  # type: ignore
+    id = db.Column(db.String, primary_key=True, nullable=False)  # type: ignore
     active = db.Column(db.Boolean, nullable=False, default=True)  # type: ignore
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)  # type: ignore
     updated_at = db.Column(  # type: ignore

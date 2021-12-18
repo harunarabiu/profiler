@@ -3,7 +3,7 @@ from profiler import db
 from profiler.models import Base
 from sqlalchemy.dialects.postgresql import ENUM
 
-class profile(Base):
+class Profile(Base):
     __tablename__ = 'profile'
 
     title = db.Column(db.String(120), nullable=False)

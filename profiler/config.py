@@ -1,5 +1,11 @@
 import os
 
+
+POSTGRES_DB = os.getenv("POSTGRES_DB")
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_HOST = os.getenv("POSTGRES_HOST")
+
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 class BaseConfig(object):
@@ -25,7 +31,7 @@ class LiveConfig(BaseConfig):
     DEBUG = False
 
     SQLALCHEMY_ECHO = False
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///profiler.db"
+    SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class TestingConfig(BaseConfig):
