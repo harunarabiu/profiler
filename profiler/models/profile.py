@@ -47,10 +47,51 @@ class Profile(Base):
             return data
             
 
-    def filter_by_columns(self, gender=None, title=None, nationality=None):
-        pass
+    def filter_by_columns(self, limit=50,  per_page=None, page=1, gender=None, title=None, nationality=None):
+
+        query = db.session.query(Profile)
+
+        if gender:
+            print(gender)
+            query = query.filter(Profile.gender == gender)
+
+        if title:
+            print(title)
+            query = query.filter(Profile.title == title)
+
+        if nationality:
+            print(nationality)
+            query = query.filter(Profile.nationality == nationality)
+
+        if per_page is not None:
+            
+            result = query.paginate(page=page, per_page=per_page)
+            data = profiles_schema.dump(result.items)
+
+            meta = {
+                "page": result.page,
+                'pages': result.pages,
+                'total_count': result.total,
+                'prev_page': result.prev_num,
+                'next_page': result.next_num,
+                'has_next': result.has_next,
+                'has_prev': result.has_prev,
+
+            }
+
+            return {'data': data, "meta": meta}
+
+        else:
+
+            result = query.limit(limit)
+
+            data = profiles_schema.dump(result)
+
+            return data
+
 
     def format(self):
+        
         results = {
             'id': self.id,
             'title': self.title,

@@ -11,8 +11,16 @@ def api():
     per_page = request.args.get('per_page', type=int)
     limit = request.args.get('limit', type=int)
 
-    result = {
-        "profiler": "hello world"
-    }
+    gender = request.args.get('gender', type=str)
+    title = request.args.get('title', type=str)
+    nationality = request.args.get('nationality', type=str)
+    
     profile = Profile()
-    return jsonify(profile.get_all(limit=limit, per_page=per_page, page=page)), 200
+
+    if gender or title or nationality:
+        result = profile.filter_by_columns(limit=limit, per_page=per_page, page=page, gender=gender, title=title, nationality=nationality)
+    else:
+        result = profile.get_all(limit=limit, per_page=per_page, page=page)
+
+
+    return jsonify(result), 200
