@@ -1,11 +1,12 @@
 from flask import jsonify, request
-from profiler import app
+from profiler import app, cache
 
 from profiler.models.profile import Profile
 
 from profiler.controllers.api.v1 import api_v1
 
 @api_v1.route("/profiles", methods=["GET"])
+@cache.cached(300, query_string=True) # Cache request with args for 300 seconds
 def api():
     page = request.args.get('page', type=int)
     per_page = request.args.get('per_page', type=int)

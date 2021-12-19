@@ -2,7 +2,7 @@ import datetime
 
 from requests.sessions import session
 
-from profiler import db
+from profiler import db, cache
 from profiler.models import Base
 from profiler.models.profile_schema import profiles_schema
 from sqlalchemy.dialects.postgresql import ENUM
@@ -20,6 +20,7 @@ class Profile(Base):
     email = db.Column(db.String(120), nullable=False)
     nationality = db.Column(db.Text, nullable=False)
 
+    #@cache.memoize(50)
     def get_all(self, limit=50, page=1, per_page=None):
         
         if per_page is not None:
@@ -46,21 +47,18 @@ class Profile(Base):
 
             return data
             
-
+    #@cache.memoize(50)
     def filter_by_columns(self, limit=50,  per_page=None, page=1, gender=None, title=None, nationality=None):
 
         query = db.session.query(Profile)
 
         if gender:
-            print(gender)
             query = query.filter(Profile.gender == gender)
 
         if title:
-            print(title)
             query = query.filter(Profile.title == title)
 
         if nationality:
-            print(nationality)
             query = query.filter(Profile.nationality == nationality)
 
         if per_page is not None:
@@ -91,7 +89,7 @@ class Profile(Base):
 
 
     def format(self):
-        
+
         results = {
             'id': self.id,
             'title': self.title,
