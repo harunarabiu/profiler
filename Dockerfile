@@ -14,9 +14,9 @@ RUN mkdir -p /var/log/supervisor && rm /etc/nginx/sites-enabled/default \
     && ln -s /etc/nginx/sites-available/profiler.conf /etc/nginx/sites-enabled/profiler.conf \
     && echo "daemon off;" >> /etc/nginx/nginx.conf && chown -R www-data:www-data /var/log
 
-WORKDIR /var/www/
+WORKDIR /var/www/profiler
 
-COPY requirements.txt /var/www/requirements.txt
+COPY requirements.txt /var/www/profiler/requirements.txt
 
 COPY . .
 
