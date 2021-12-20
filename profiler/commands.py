@@ -86,7 +86,7 @@ def seed_profiles(limit):
         if (limit - i) < max_limit_per_request:
             max_limit_per_request = limit - i
         else:
-            sleep(18)
+            sleep(20)
     
     print("Seeding completed.")
 

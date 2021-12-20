@@ -17,6 +17,7 @@ remember to change it to taste where appropriate.
 # How to use
 1. Type `make` and choose any command that shows afterwards
 2. To reload the application run by nginx: type `make livereload`
+3. type `make seed_profiles` to seed demo user profiles into the database
 
 
 # To run the application for development

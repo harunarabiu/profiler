@@ -118,51 +118,57 @@ shell:
 
 .PHONY: db_init
 # help: dbi				- to make a development migration init
-dbi:
+db_init:
 	@$(PROFILER_APP) flask db-init
 
 
 .PHONY: db_migrate
 # help: dbm				- to make a development migration migrate
-dbm:
+db_migrate:
 	@$(PROFILER_APP) flask db-migrate
 
 
 .PHONY: db_revision
 # help: dbr				- to make a development migration revision
-dbr:
+db_revision:
 	@$(PROFILER_APP) flask db-revision
 
 
 .PHONY: db_upgrade_sql
 # help: dbu_sql				- to make a development migration upgrade, showing the sql
-dbu_sql:
+db_upgrade_sql:
 	@$(PROFILER_APP) flask db-upgrade-sql
 
 
 .PHONY: db_upgrade
 # help: db_upgrade			- to make a development migration upgrade, not showing the sql
-dbu_no_sql:
+db_upgrade:
 	@$(PROFILER_APP) flask db-upgrade
 
 
 .PHONY: db_downgrade_sql
 # help: db_downgrade				- to make a development migration downgrade, showing the sql
-dd_sql:
+db_downgrade_sql:
 	@$(PROFILER_APP) flask db-downgrade-sql
 
 
 .PHONY: db_downgrade
 # help: db_downgrade			- to make a development migration downgrade, not showing the sql
-dd_no_sql:
+db_downgrade:
 	@$(PROFILER_APP) flask db-downgrade
 
 
 .PHONY: db_current
 # help: db_current				- shows the current migration
-dbc:
+db_current:
 	@$(PROFILER_APP) flask db-current
-	@#docker-compose run --rm serve flask dbc
+	@#docker-compose run --rm serve flask db-current
+
+
+.PHONY: seed_profiles
+# help: seed_profiles	        - seed database with 100,000 random profiles fetch from  https://randomuser.me/
+seed_profiles:
+	@$(PROFILER_APP) flask seedprofiles 100000
 
 
 .PHONY: updates

@@ -15,7 +15,7 @@ cat > .env<< EOF
 
 # Redis Details
 REDIS_HOST=redis
-REDIS_HOST_PORT=6080
+REDIS_HOST_PORT=6379
 REDIS_DB=profileredis
 
 
@@ -24,7 +24,7 @@ REDIS_DB=profileredis
 POSTGRES_DB=profilerdb
 POSTGRES_USER=profiler
 POSTGRES_PASSWORD=Pass0123
-POSTGRES_HOST_PORT=9010
+POSTGRES_HOST_PORT=5432
 POSTGRES_HOST=profilerpg
 
 
