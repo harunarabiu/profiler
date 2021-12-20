@@ -1,5 +1,5 @@
 from profiler import app
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def make_app():
+    return app
