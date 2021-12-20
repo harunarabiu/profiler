@@ -10,9 +10,9 @@ services:
     ports:
       - $POSTGRES_HOST_PORT:5432
     volumes:
-      - $PWD/custom:/custom
-      - $PWD/custom/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - $PWD/profiler/data/postgresql:/var/lib/postgresql/data
+      - ./custom:/custom
+      - ./custom/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./profiler/data/postgresql:/var/lib/postgresql/data
 
   redis:
     image: redis
