@@ -1,6 +1,5 @@
 # specific files to be ignored while uploading this project
 
-.git
 .env
 .coverage
 *.db
@@ -8,6 +7,10 @@ docs/
 libraries/
 __pycache__/
 data/
+
+
+supervisord.pid
+supervisord.log
 
 *.py[cod]
 *$py.class

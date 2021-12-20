@@ -1,11 +1,38 @@
 import requests
+import os
 import click
 import json
+import time
 from datetime import datetime
 from time import sleep
 
+from flask_migrate import (  # type: ignore
+    current,
+    downgrade,
+    init,
+    migrate,
+    revision,
+    upgrade,
+)
+
 from profiler import app, db
 from profiler.models.profile import Profile
+
+
+class Usable(object):
+    def __init__(self):
+        self.time = datetime.utcfromtimestamp(time.time())
+        self.directory = os.path.join(os.getcwd(), "migrations", "versions")
+
+    def message(self):
+        return self.time.strftime("%Y_%m_%d")
+
+    def revision_id(self):
+        path, dirs, files = next(os.walk(self.directory))
+        return str(len([file_ for file_ in files if file_.endswith(".py")]) + 1).zfill(
+            6
+        )
+
 
 
 @app.cli.command("seedprofiles")
@@ -63,3 +90,77 @@ def seed_profiles(limit):
     
     print("Seeding completed.")
 
+@app.cli.command("db-init")
+def dbi():
+    """
+    Calls the init()
+    :return: None
+    """
+    init()
+
+
+@app.cli.command("db-migrate")
+def dbm():
+    """
+    Calls the migrate()
+    :return: None
+    """
+    usable = Usable()
+    migrate(message=usable.message(), rev_id=usable.revision_id())
+
+
+@app.cli.command("db-revision")
+def dbr():
+    """
+    Calls the revision()
+    :return: None
+    """
+    usable = Usable()
+    revision(message=usable.message(), rev_id=usable.revision_id())
+
+
+@app.cli.command("db-upgrade-sql")
+def dbu_sql():
+    """
+    Generate SQL statements but you will personally have to `run` it on your DB
+    :return: None
+    """
+    upgrade(sql=True)
+
+
+@app.cli.command("db-current")
+def db_current():
+    """
+    Calls the current()
+    :return: None
+    """
+    current()
+
+
+@app.cli.command("db-upgrade")
+def dbu_no_sql():
+    """
+    Bring the DB up to date with your data models.
+    Calls the migrate()
+    :return: None
+    """
+    upgrade()
+
+
+@app.cli.command("db-downgrade-sql")
+def downgrade_sql():
+    """
+    Generate SQL statements but you will personally have to `run` it on your DB
+    :return: None
+    """
+    downgrade(sql=True)
+
+
+@app.cli.command("db-downgrade")
+def downgrade_no_sql():
+    """
+    Bring the DB up to date with your data models.
+    Calls the downgrade()
+    :return: None
+    """
+    downgrade()
