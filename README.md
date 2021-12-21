@@ -31,18 +31,14 @@ make seed_profiles
 ```
 6. access the app through
 ```bash
-http://<host_machine_ip>:80/api/v1/profiles
+http://<host_machine_ip>:80
 ```
-#  API Guide
-1. navigate to  `make bash` to access the bash terminal of the app container
-2. run `flask run --host 0.0.0.0`
-3. access the app through `http://<host_machine_ip>:9040/api/v1/profiles`
 
 
 # To run the application for development
 1. type `make bash` to access the bash terminal of the app container
 2. run `flask run --host 0.0.0.0`
-3. access the app through `http://<host_machine_ip>:9040/api/v1/profiles`
+3. access the app through `http://127.0.01:9040/api/v1/profiles`
 
 
 

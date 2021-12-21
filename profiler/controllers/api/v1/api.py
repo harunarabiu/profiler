@@ -30,4 +30,4 @@ def api():
         result = profile.get_all(limit=limit, per_page=per_page, page=page)
 
 
-    return jsonify({ "data": result}), 200
+    return jsonify(result), 200

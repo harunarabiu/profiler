@@ -45,7 +45,7 @@ class Profile(Base):
             profiles = db.session.query(Profile).limit(limit).all()
             data = profiles_schema.dump(profiles)
 
-            return data
+            return {'data': data}
             
     #@cache.memoize(50)
     def filter_by_columns(self, limit=50,  per_page=None, page=1, gender=None, title=None, nationality=None):
@@ -85,7 +85,7 @@ class Profile(Base):
 
             data = profiles_schema.dump(result)
 
-            return data
+            return {'data': data}
 
 
     def format(self):
