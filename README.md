@@ -23,22 +23,28 @@ docker-compose up --build
 
 4. Make database migrations
 ```bash
-make db_migrate
+make db_upgrade
 ```
 5. Seed demo user profiles to the database
 ```bash
 make seed_profiles
 ```
-6. Seed demo user profiles to the database
+6. access the app through
 ```bash
 http://<host_machine_ip>:80/api/v1/profiles
 ```
+#  API Guide
+1. navigate to  `make bash` to access the bash terminal of the app container
+2. run `flask run --host 0.0.0.0`
+3. access the app through `http://<host_machine_ip>:9040/api/v1/profiles`
 
 
 # To run the application for development
 1. type `make bash` to access the bash terminal of the app container
 2. run `flask run --host 0.0.0.0`
-3. access the app through `http://<host_machine_ip>:9030/api/v1/profiles`
+3. access the app through `http://<host_machine_ip>:9040/api/v1/profiles`
+
+
 
 # Bootstrap the application
 `make routes` displays all the routes so that you can know which one to work with
@@ -46,8 +52,8 @@ http://<host_machine_ip>:80/api/v1/profiles
 
 `docker-compose ps` helps you see the running apps and the ports they are serving on
 
-`make db_init` initialise data
-`make db_migrate` helps you see the running apps and the ports they are serving on
+`make db_init` initialise database migration.
+`make db_migrate` migrate database migrations.
 
 
 `make bash`  to access the bash terminal of the app container 

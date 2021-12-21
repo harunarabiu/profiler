@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Profile API Challenge</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+      <style>
+          .container {
+              margin-top: 20px;
+              margin-bottom: 20px;
+          }
+      </style>
+   </head>
+   <body>
+      
+      
+      <div class="container">
+        
+       
+         <section id="intro">
+            <h4>Profiler API</h4>
+            <p>An API endpoint to get list of users.</p>
+         </section>
+         <section id="howto">
+            <h4>How to use</h4>
+            <p>You can use AJAX to call the Profiler API and will receive a collection of users in return.</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles</pre>
+            <p>Sample response result</p>
+            <pre class="alert alert-secondary">
+                { 
+                    "data" : [
+                        {
+                        "dob": "1966-05-27",
+                        "email": "nellie.stewart@example.com",
+                        "first_name": "Nellie",
+                        "gender": "female",
+                        "id": "0d50b402-6098-41c2-b353-d4dd60e29f3b",s
+                        "last_name": "Stewart",
+                        "nationality": "US",
+                        "phone": "(874)-475-8377",
+                        "title": "Mrs"
+                        },
+                        {
+                        "dob": "1990-05-18",
+                        "email": "ethel.mccoy@example.com",
+                        "first_name": "Ethel",
+                        "gender": "female",
+                        "id": "32ccf184-2138-4652-9d33-557dea444838",
+                        "last_name": "Mccoy",
+                        "nationality": "US",
+                        "phone": "(965)-834-7481",
+                        "title": "Mrs"
+                        }
+                    ]
+                }
+            </pre>
+         </section>
+
+         <section id="errors">
+            <h4>API Errors</h4>
+            <p>If there is error on the endpoint a sample error response will be receive.</p>
+            <pre class="alert alert-secondary">{"error": "oops, something has gone wrong."}</pre>
+         </section>
+         
+         <section id="multiple">
+            <h4>Using filter</h4>
+            <p>Requesting users with limit filter</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles?limit=5</pre>
+            <p>Filtering by gender i.e male,female,other</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles?gender=female</pre>
+            <p>Filtering by nationality i.e US,TR,FR,CH,DE,CA</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles?nationality=US</pre>
+            <p>Filtering by title Mr,Mrs,Miss</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles?title=Mr</pre>
+            <p>Using multiple filters at once</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles?title=Mr&nationality=US&gender=female&limit=100</pre>
+         </section>
+
+         <section id="pagination">
+            <h4>Pagination</h4>
+            <p>You can request multiple pages of a seed with the page parameter.</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles?title=Mr&nationality=US&gender=female</pre>
+            <p>You can also request use filters with pagination.</p>
+            <pre class="alert alert-secondary">http://{{host}}/api/v1/profiles?title=Mr&nationality=US&gender=female&per_page=100&page=1</pre>
+         </section>
+
+      </div>
+
+   </body>
+</html>

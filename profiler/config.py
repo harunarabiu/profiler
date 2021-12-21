@@ -29,7 +29,7 @@ class BaseConfig(object):
 
     #SQLALCHEMY Config
     SQLALCHEMY_ECHO = False
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///profile.db"
+    # SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     
 
@@ -38,7 +38,7 @@ class DevelopmentConfig(BaseConfig):
     TESTING = False
     
     SQLALCHEMY_ECHO = False
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///profile.db"
+    # SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class LiveConfig(BaseConfig):
