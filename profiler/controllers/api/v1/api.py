@@ -11,7 +11,12 @@ def api():
     page = request.args.get('page', type=int)
     per_page = request.args.get('per_page', type=int)
     limit = request.args.get('limit', type=int)
-    print("limit", limit)
+
+    if limit == None:
+        limit = 50
+    if limit > 5000:
+        limit = 5000
+    
 
     gender = request.args.get('gender', type=str)
     title = request.args.get('title', type=str)
