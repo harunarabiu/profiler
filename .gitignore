@@ -3,7 +3,6 @@
 .env
 .coverage
 *.db
-docs/
 libraries/
 __pycache__/
 data/
