@@ -17,3 +17,11 @@ class RESTRoutes(unittest.TestCase):
     def test_profiles_endpoint(self):
         r = self.app.get(self.api_route)
         self.assertEqual(r.status_code, 200)
+
+    def test_profiles_filter(self):
+        r = self.app.get(self.api_route + "?gender=female&limit=1")
+        result = json.load(r.content)
+        print("test result", result)
+        data = result["data"]
+
+        self.assertEqual(data["gender"], "female")
