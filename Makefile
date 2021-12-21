@@ -117,19 +117,19 @@ shell:
 
 
 .PHONY: db_init
-# help: dbi				- to make a development migration init
+# help: db_init				- to make a development migration init
 db_init:
 	@$(PROFILER_APP) flask db-init
 
 
 .PHONY: db_migrate
-# help: dbm				- to make a development migration migrate
+# help: db_migrate			- to make a development migration migrate
 db_migrate:
 	@$(PROFILER_APP) flask db-migrate
 
 
 .PHONY: db_revision
-# help: dbr				- to make a development migration revision
+# help: db_revision				- to make a development migration revision
 db_revision:
 	@$(PROFILER_APP) flask db-revision
 
@@ -194,42 +194,6 @@ ps:
 # help: test				- run tests
 test:
 	@docker-compose run --rm serve python -m unittest discover -s tests
-
-
-.PHONY: ci
-# help: ci				- these conditions have to pass before you can make a push
-ci: lint typing test cospell
-
-
-.PHONY: coverage
-# help: coverage			- perform test coverage checks
-coverage:
-	@$(PROFILER_APP) coverage erase
-	@$(PROFILER_APP) coverage run -m unittest discover -s tests -v
-	@$(PROFILER_APP) coverage html
-	@$(PROFILER_APP) coverage report
-	@# pytest --cov=profiler
-
-
-
-
-.PHONY: docs
-# help: docs				- generate project documentation
-docs: coverage
-	@cd docs; rm -rf source/api/profiler*.rst source/api/modules.rst build/*
-	@cd docs; make html
-
-
-.PHONY: check-docs
-# help: check-docs			- quick check docs consistency
-check-docs:
-	@cd docs; make dummy
-
-
-.PHONY: serve-docs
-# help: serve-docs			- serve project html documentation
-serve-docs:
-	@python3 -m http.server --directory docs/source/_static/coverage/ --bind 127.0.0.1 8939
 
 
 .PHONY: pgsql_bash

@@ -5,25 +5,55 @@ An API endpoint to get list of users
 ### Problem Challenge
 To read more about the problem challenge visit https://gist.github.com/scabbiaza/82e9069cfa71c4d7aa9d9539a794a1db
 
-# Before you begin
-1. *source bootstrap.sh* then alter to taste, if need be.
-2. `make download` and `make install` to download & install the necessary libraries.
-3. If you encounter errors during the build of uwsgi, blinker, uwsgitop, pyperclip and wrapt, just overlook it.
+# Setup
 
-# Note
-1. Ports are quoted here, e.g. 9030. Please note that if you have changed such quoted ports in your `.env` file,
-remember to change it to taste where appropriate.
+1. Clone this repository
+```bash
+git clone this repo
+```
 
-# How to use
-1. Type `make` and choose any command that shows afterwards
-2. To reload the application run by nginx: type `make livereload`
-3. type `make seed_profiles` to seed demo user profiles into the database
+2. Generate .env file from `bootstraps.sh` to hold environment variales.
+```bash
+source bootstraps.sh
+```
+3. Deploy docker containers using the `docker-compose.yml` and `Dockerfile`.
+```bash
+docker-compose up --build
+```
+
+4. Make database migrations
+```bash
+make db_migrate
+```
+5. Seed demo user profiles to the database
+```bash
+make seed_profiles
+```
+6. Seed demo user profiles to the database
+```bash
+http://<host_machine_ip>:80/api/v1/profiles
+```
 
 
 # To run the application for development
-1. type `make bash` to enter the container
+1. type `make bash` to access the bash terminal of the app container
 2. run `flask run --host 0.0.0.0`
+3. access the app through `http://<host_machine_ip>:9030/api/v1/profiles`
 
 # Bootstrap the application
-1. `make routes` displays all the routes so that you can know which one to work with
-2. `docker-compose up` helps you see the running apps and the ports they are serving on
+`make routes` displays all the routes so that you can know which one to work with
+`make shell` to access flask shell
+
+`docker-compose ps` helps you see the running apps and the ports they are serving on
+
+`make db_init` initialise data
+`make db_migrate` helps you see the running apps and the ports they are serving on
+
+
+`make bash`  to access the bash terminal of the app container 
+`make pgsql_bash`  to access the bash terminal of the database container
+
+`make updates` to make git updates and show branch
+`make build` to make git updates and show branch
+
+`make help` display help and other commands.
