@@ -1,10 +1,6 @@
 import unittest
 import json
 
-from webtest import TestApp  # type: ignore
-from webtest.app import AppError  
-
-
 from profiler import db, app # noqa: E402
 from profiler.models.profile import Profile  # noqa: E402
 
@@ -20,6 +16,7 @@ class RESTRoutes(unittest.TestCase):
 
     def test_profiles_filter(self):
         r = self.app.get(self.api_route + "?gender=female&limit=1")
+        print("test result", r)
         result = json.load(r.content)
         print("test result", result)
         data = result["data"]
