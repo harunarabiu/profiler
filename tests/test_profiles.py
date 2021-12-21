@@ -1,4 +1,5 @@
 import unittest
+import json
 
 from webtest import TestApp  # type: ignore
 from webtest.app import AppError  
@@ -13,7 +14,6 @@ class RESTRoutes(unittest.TestCase):
         self.app = app.test_client(self)
         self.api_route = "/api/v1/profiles"
 
-    def test_profiles(self):
+    def test_profiles_endpoint(self):
         r = self.app.get(self.api_route)
         self.assertEqual(r.status_code, 200)
-       
